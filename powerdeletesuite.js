@@ -448,7 +448,7 @@ var pd = {
       const rateLimitReset = parseInt(xhr.getResponseHeader('x-ratelimit-reset'), 10);
       // Determine timeout
       let timeout;
-      if (rateLimitRemaining <= 3) {
+      if (rateLimitRemaining <= 90) {
         timeout = (rateLimitReset + 1) * 1000;
       } else {
         // Randomize timeout between 1 to 5 seconds 
