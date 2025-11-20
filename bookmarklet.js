@@ -1,32 +1,29 @@
-javascript: (function () {
-  window.bookmarkver = "1.4";
-  var isReddit =
-    document.location.hostname.split(".").slice(-2).join(".") === "reddit.com";
-  var isOverview = document.location.href.match(/\/overview\b/);
+javascript: (function() {
+  window.bookmarkver = '1.4';
+  var isReddit = document.location.hostname.split('.').slice(-2).join('.') === 'reddit.com';
+  var isOverview = !!document.location.href.match(/\/overview\b/i);
+
   if (isReddit && isOverview) {
-    var cachBustUrl = `?${new Date().getDate()}`;
-    var cachBustUrl = 'https://raw.githubusercontent.com/j0be/PowerDeleteSuite/master/powerdeletesuite.js?' + (new Date().getDate());
-    // var cachBustUrl = "https://raw.githubusercontent.com/saandman/PowerDeleteSuite/master/powerdeletesuite.js?" + (new Date().getDate());
-    fetch(cachBustUrl)
-      .then(function (response) {
+    var cacheBustUrl = 'https://raw.githubusercontent.com/braboobssiere/PowerDeleteSuite_copy/master/powerdeletesuite.js?' + (new Date().getDate());
+
+    fetch(cacheBustUrl)
+      .then(function(response) {
         return response.text();
       })
-      .then(function (data) {
-        var script = document.createElement("script");
-        script.id = "pd-script";
+      .then(function(data) {
+        var script = document.createElement('script');
+        script.id = 'pd-script';
         script.innerHTML = data;
-        document.getElementsByTagName("head")[0].appendChild(script);
+        document.getElementsByTagName('head')[0].appendChild(script);
       })
-      .catch(function () {
-        alert("Error retrieving PowerDeleteSuite from github");
+      .catch(function() {
+        alert('Error retrieving PowerDeleteSuite from GitHub');
       });
-  } else if (
-    confirm(
-      "This script can only be run from your own user profile on reddit. Would you like to go there now?"
-    )
-  ) {
-    document.location = "https://old.reddit.com/u/me/overview";
+  } else if (confirm('This script can only be run from your own user profile on Reddit. Would you like to go there now?')) {
+    document.location = 'https://old.reddit.com/user/me/overview';
   } else {
-    alert("Please go to your reddit profile before running this script");
+    alert('Please go to your Reddit profile before running this script');
   }
 })();
+
+

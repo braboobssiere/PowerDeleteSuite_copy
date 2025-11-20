@@ -1,217 +1,30 @@
 var pd = {
-  version: "1.4.11",
+  version: "1.4.12",
   bookmarkver: "1.4",
-  editStrings: [
-    "I love ice cream.",
-    "I hate beer.",
-    "My favorite color is blue.",
-    "I enjoy reading books.",
-    "I like to go hiking.",
-    "My favorite movie is Inception.",
-    "I enjoy playing video games.",
-    "I like to travel.",
-    "I'm learning to play the guitar.",
-    "I enjoy cooking.",
-    "I love listening to music.",
-    "I enjoy watching the sunset.",
-    "I like to explore new places.",
-    "I find joy in reading a good book.",
-    "I appreciate a good cup of coffee.",
-    "I enjoy spending time with my friends.",
-    "I like learning new things.",
-    "I find peace in long walks.",
-    "I enjoy the sound of rain.",
-    "I love the smell of fresh bread.",
-    "random string 1",
-    "random string 2",
-    "I like watching movies.",
-    "I enjoy learning new languages.",
-    "I love painting.",
-    "I find joy in gardening.",
-    "I like baking cookies.",
-    "I enjoy swimming in the ocean.",
-    "My favorite hobby is photography.",
-    "I like playing chess.",
-    "I enjoy going to the gym.",
-    "I love spending time with family.",
-    "I like riding my bike.",
-    "I enjoy writing stories.",
-    "My favorite sport is basketball.",
-    "I like solving puzzles.",
-    "I enjoy camping in the mountains.",
-    "I love taking nature walks.",
-    "I like listening to podcasts.",
-    "I enjoy doing yoga.",
-    "My favorite season is autumn.",
-    "I like playing board games.",
-    "I enjoy star gazing.",
-"I love watching documentaries.",
-"I like making crafts.",
-"I enjoy attending concerts.",
-"My favorite food is sushi.",
-"I like trying new restaurants.",
-"I enjoy going to the beach.",
-"I love practicing mindfulness.",
-"I like learning about history.",
-"I enjoy playing the piano.",
-"My favorite drink is tea.",
-"I like volunteering in my community.",
-"I enjoy visiting museums.",
-"I love taking road trips.",
-"I like working on DIY projects.",
-"I enjoy playing with my pets.",
-"My favorite dessert is cheesecake.",
-"I like listening to audiobooks.",
-"I enjoy doing crossword puzzles.",
-"I love spending time in nature.",
-"I like visiting art galleries.",
-"I enjoy attending theater plays.",
-"My favorite flower is the sunflower.",
-"I like practicing meditation.",
-"I enjoy cooking new recipes.",
-"I love exploring national parks.",
-"I like collecting stamps.",
-"I enjoy attending festivals.",
-"My favorite tree is the oak.",
-"I like gardening in my backyard.",
-"I enjoy learning new skills.",
-"I love making pottery.",
-"I like watching wildlife.",
-"I enjoy going to farmers markets.",
-"My favorite animal is the dolphin.",
-"I like playing tennis.",
-"I enjoy going on picnics.",
-"I love watching the stars.",
-"I like bird watching.",
-"I enjoy making jewelry.",
-"My favorite place is the mountains.",
-"I like trying new hobbies.",
-"I enjoy going on adventures.",
-    "I love sailing on the lake.",
-"I like attending sports events.",
-"I enjoy taking dance classes.",
-"My favorite book is Pride and Prejudice.",
-"I like doing photography walks.",
-"I enjoy visiting historical sites.",
-"I love learning about astronomy.",
-"I like playing with children.",
-"I enjoy taking bubble baths.",
-"My favorite band is The Beatles.",
-"I like creating digital art.",
-"I enjoy practicing archery.",
-"I love watching animated movies.",
-"I like doing science experiments.",
-"I enjoy learning about marine life.",
-"My favorite snack is popcorn.",
-"I like building model airplanes.",
-"I enjoy doing tai chi.",
-"I love attending wine tastings.",
-"I like knitting scarves.",
-"I enjoy going to amusement parks.",
-"My favorite TV show is Friends.",
-"I like making homemade gifts.",
-"I enjoy exploring caves.",
-"I love listening to classical music.",
-"I like making soap.",
-"I enjoy trying new cuisines.",
-"My favorite superhero is Spider-Man.",
-"I like going to book clubs.",
-"I enjoy doing escape rooms.",
-"I love learning about different cultures.",
-"I like practicing calligraphy.",
-"I enjoy attending art workshops.",
-"My favorite fruit is mango.",
-"I like making candles.",
-"I enjoy playing frisbee.",
-"I love visiting botanical gardens.",
-"I like going to the zoo.",
-"I enjoy watching ballet.",
-"My favorite author is J.K. Rowling.",
-"I like practicing magic tricks.",
-"I enjoy rock climbing.",
-"I love learning about physics.",
-"I like doing community service.",
-"I enjoy making flower arrangements.",
-"My favorite comedian is Robin Williams.",
-"I like doing woodwork.",
-"I enjoy going on nature hikes.",
-"I love listening to jazz.",
-"I like playing with Legos.",
-"I enjoy attending live shows.",
-"My favorite instrument is the violin.",
-"I like learning new software.",
-"I enjoy doing pottery classes.",
-"I love participating in trivia nights.",
-"I like going to the planetarium.",
-"I enjoy learning about geology.",
-"My favorite holiday is Christmas.",
-"I like watching foreign films.",
-"I enjoy writing poetry.",
-"I love exploring abandoned places.",
-    "I like practicing martial arts.",
-"I enjoy doing mindfulness exercises.",
-"I love learning about space exploration.",
-"I like going to flea markets.",
-"I enjoy collecting vintage items.",
-"My favorite painter is Van Gogh.",
-"I like making origami.",
-"I enjoy going to car shows.",
-"I love learning about ancient civilizations.",
-"I like watching magic shows.",
-"I enjoy doing jigsaw puzzles.",
-"My favorite vegetable is broccoli.",
-"I like attending science fairs.",
-"I enjoy playing card games.",
-"I love visiting aquariums.",
-"I like practicing playing drums.",
-"I enjoy making scrapbooks.",
-"My favorite poet is Robert Frost.",
-"I like visiting bookstores.",
-"I enjoy doing improv comedy.",
-"I love learning about psychology.",
-"I like attending lectures.",
-"I enjoy going on scenic drives.",
-"My favorite cuisine is Italian.",
-"I like creating comic strips.",
-"I enjoy going to the opera.",
-"I love watching musicals.",
-"I like practicing parkour.",
-"I enjoy learning about architecture.",
-"My favorite drink is hot chocolate.",
-"I like attending workshops.",
-"I enjoy playing darts.",
-"I love exploring forests.",
-"I like learning about meteorology.",
-"I enjoy going to the circus.",
-"My favorite gemstone is sapphire.",
-"I like practicing public speaking.",
-"I enjoy doing charity work.",
-"I love watching wildlife documentaries.",
-"I like learning about mythology.",
-"I enjoy doing metalworking.",
-"My favorite planet is Saturn.",
-"I like creating graphic designs.",
-"I enjoy going to comedy clubs.",
-"I love learning about economics.",
-"I like making quilts.",
-"I enjoy going to music festivals.",
-"My favorite sculpture is The Thinker.",
-"I like practicing yoga.",
-"I enjoy attending cultural festivals.",
-"I love learning about world history.",
-"I like visiting libraries.",
-"I enjoy doing voice acting.",
-"My favorite dance is the tango.",
-"I like making paper crafts.",
-"I enjoy going to food tastings.",
-"I love learning about anthropology.",
-"I like attending art exhibitions.",
-"I enjoy going to street fairs.",
-"My favorite insect is the butterfly.",
-"I like creating video content.",
-"I enjoy participating in hackathons."
+  words: [
+  ['I', 'We', 'They', 'She', 'He', 'Us'],
+  ['love', 'enjoy', 'like', 'prefer', 'appreciate', 'taste'],
+  ['sushi', 'pizza', 'salad', 'ice cream', 'pasta', 'tacos'],
+  ['with coffee', 'with tea', 'with wine', 'with juice', 'with beer', 'with soda'],
+  ['while cooking', 'while baking', 'while gardening', 'while painting', 'while hiking', 'while reading'],
+  ['in the evening', 'on weekends', 'during the week', 'in the summer', 'in the winter', 'at night'],
+  ['to relax', 'for fun', 'to learn', 'to explore', 'to socialize', 'to unwind'],
+  ['with friends', 'alone', 'at home', 'in a class', 'at the park', 'at a restaurant']
   ],
-  init: function () {
+
+  generateRandomSentence: function() {
+    function getRandomInt(min, max) {
+        const range = max - min + 1;
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        return min + (array[0] % range);
+    }
+
+    var sentence = this.words.map(row => row[getRandomInt(0, row.length - 1)]).join(' ');
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
+},
+
+  init: function() {
     pd.checks.versions();
     if (window.pd_processing !== true) {
       if (pd.checks.location()) {
@@ -225,13 +38,13 @@ var pd = {
             "This script can only be run from your own user profile on reddit. Would you like to go there now?"
           )
         ) {
-          document.location = "https://old.reddit.com/u/me/overview";
+          document.location = "https://old.reddit.com/user/me/overview";
         }
       }
     }
   },
   checks: {
-    versions: function () {
+    versions: function() {
       function checkBookmarkletVersion() {
         if (
           typeof window.bookmarkver === "undefined" ||
@@ -251,26 +64,29 @@ var pd = {
         }
         return true;
       }
+
       function checkAppVersion() {
-        pd.prevRunVersion = localStorage.getItem("pd_ver")
-          ? localStorage.getItem("pd_ver")
-          : "0";
+        pd.prevRunVersion = localStorage.getItem("pd_ver") ?
+          localStorage.getItem("pd_ver") :
+          "0";
         localStorage.setItem("pd_ver", pd.version);
         if (pd.version !== pd.prevRunVersion) {
           if (
             confirm(
               "You've gotten the latest update! You are now running PowerDeleteSuite v" +
-                pd.version +
-                ". Would you like to open the changelog in a new tab?"
+              pd.version +
+              ". Would you like to open the changelog in a new tab?"
             )
           ) {
-            $.ajax({ url: "/r/PowerDeleteSuite/new.json" }).then(
-              function (data) {
+            $.ajax({
+              url: "/r/PowerDeleteSuite/new.json"
+            }).then(
+              function(data) {
                 window.open(
                   "https://reddit.com" + data.data.children[0].data.permalink
                 );
               },
-              function () {
+              function() {
                 window.open("https://reddit.com/r/PowerDeleteSuite");
               }
             );
@@ -280,36 +96,36 @@ var pd = {
       }
       return pd.debugging || (checkBookmarkletVersion() && checkAppVersion());
     },
-    location: function () {
+    location: function() {
       return (
         document.location.hostname.split(".").slice(-2).join(".") ==
-          "reddit.com" &&
+        "reddit.com" &&
         document.location.href.match("/user/") &&
         document.location.href.match("/overview") &&
         $(".titlebox h1").first().text() ===
-          $("#header-bottom-right .user a").first().text()
+        $("#header-bottom-right .user a").first().text()
       );
     },
   },
   setup: {
-    basicSettings: function () {
+    basicSettings: function() {
       pd.config = {
-        uh: $("#config").innerHTML
-          ? $("#config")
-              .innerHTML.replace(/.*?modhash.{1}: .{1}/, "")
-              .replace(/[^a-z0-9].*/, "")
-          : $("#config")[0]
-              .innerHTML.replace(/.*?modhash.{1}: .{1}/, "")
-              .replace(/[^a-z0-9].*/, ""),
+        uh: $("#config").innerHTML ?
+          $("#config")
+          .innerHTML.replace(/.*?modhash.{1}: .{1}/, "")
+          .replace(/[^a-z0-9].*/, "") : $("#config")[0]
+          .innerHTML.replace(/.*?modhash.{1}: .{1}/, "")
+          .replace(/[^a-z0-9].*/, ""),
         user: $("#header-bottom-right .user a").first().text(),
       };
       pd.endpoints = {
         comments: "/user/" + pd.config.user + "/comments/.json",
         submissions: "/user/" + pd.config.user + "/submitted/.json",
         search: "/search.json",
+        overview: "/user/" + pd.config.user + "/overview/.json",
       };
     },
-    applyDom: function () {
+    applyDom: function() {
       if (pd.debugging) {
         $("#pd__central,#pd__style").remove("");
       }
@@ -326,27 +142,27 @@ var pd = {
       pd.setup.applyStyles();
       pd.setup.applyCentral();
     },
-    applyStyles: function () {
+    applyStyles: function() {
       $.ajax({
-        url: "https://raw.githubusercontent.com/mykola2312/PowerDeleteSuite/master/stylesheet.json",
+        url: "https://raw.githubusercontent.com/braboobssiere/PowerDeleteSuite_copy/master/stylesheet.json",
         context: $("#pd__style"),
       }).then(
-        function (data) {
+        function(data) {
           console.log(data);
           $(this)[0].innerHTML = JSON.parse(data).data.stylesheet;
           $("#pd__central").show();
         },
-        function () {
+        function() {
           alert("Error retrieving CSS from /r/PowerDeleteSuite");
         }
       );
     },
-    applyCentral: function () {
+    applyCentral: function() {
       $.ajax({
         url: "/r/PowerDeleteSuite/wiki/centralform.json",
         context: $("#pd__central"),
       }).then(
-        function (data) {
+        function(data) {
           $(this).html($("<textarea/>").html(data.data.content_md).text());
           if ($("#pd__style").html() === "") {
             $(this).hide();
@@ -362,19 +178,19 @@ var pd = {
           pd.setup.bindUI();
           pd.helpers.restoreSettings();
         },
-        function () {
+        function() {
           alert("Error retrieving markup from /r/PowerDeleteSuite");
         }
       );
     },
-    applySubList: function () {
+    applySubList: function() {
       var sub_arr = [],
         i,
         sid;
-      $("#per-sr-karma tbody th").each(function () {
+      $("#per-sr-karma tbody th").each(function() {
         sub_arr.push($(this).text());
       });
-      sub_arr = sub_arr.sort(function (a, b) {
+      sub_arr = sub_arr.sort(function(a, b) {
         return a.toLowerCase().localeCompare(b.toLowerCase());
       });
       $("#pd__sub-list").append(
@@ -384,30 +200,30 @@ var pd = {
         sid = "sub--" + sub_arr[i];
         $("#pd__sub-list").append(
           "<div><input class='ind' data-sub='" +
-            sub_arr[i] +
-            "' type='checkbox' name='" +
-            sid +
-            "' id='" +
-            sid +
-            "''/><label class='" +
-            sid +
-            "' for='" +
-            sid +
-            "'>" +
-            sub_arr[i] +
-            "</label></div>"
+          sub_arr[i] +
+          "' type='checkbox' name='" +
+          sid +
+          "' id='" +
+          sid +
+          "''/><label class='" +
+          sid +
+          "' for='" +
+          sid +
+          "'>" +
+          sub_arr[i] +
+          "</label></div>"
         );
       }
-      $("#side-mod-list li").each(function () {
+      $("#side-mod-list li").each(function() {
         $(
           ".sub--" +
-            $(this)
-              .text()
-              .replace(/\/?[ru]\//, "")
+          $(this)
+          .text()
+          .replace(/\/?[ru]\//, "")
         ).prepend("<b class='m'>[M]</b>");
       });
     },
-    createProcessStream: function () {
+    createProcessStream: function() {
       window.pd_processing = true;
       pd.exportItems = [];
       pd.exportIds = [];
@@ -416,8 +232,8 @@ var pd = {
         info: {
           numPages: Math.min(
             ($("#pd__submissions").is(":checked") ? 8 : 0) +
-              ($("#pd__comments").is(":checked") ? 4 : 0) +
-              ($("#pd__comments-edit").is(":checked") ? 12 : 0),
+            ($("#pd__comments").is(":checked") ? 4 : 0) +
+            ($("#pd__comments-edit").is(":checked") ? 12 : 0),
             12
           ),
           numItems: 0,
@@ -449,15 +265,16 @@ var pd = {
         paths: {
           sections:
             !$("#pd__submissions").is(":checked") &&
-            !$("#pd__export").is(":checked")
-              ? [
-                  "comments",
-                  "search",
-                  "submissions",
-                ] /* Search is actually more efficient than submissions if we're not handling submissions (`self:1`) */
-              : ["comments", "submissions", "search"],
-          sorts: ["new", "hot", "top", "controversial"],
-          timeframes: ["all", "hour", "day", "week", "month", "year"],
+            !$("#pd__export").is(":checked") ? [
+              "comments",
+              "search",
+              "submissions",
+              "overview",
+            ] /* Search is actually more efficient than submissions if we're not handling submissions (`self:1`) */ : ["comments", "submissions", "search", "overview"],
+          // sorts: ["new", "hot", "top", "controversial"],
+          sorts: ["new"],
+          // timeframes: ["all", "hour", "day", "week", "month", "year"],
+          timeframes: ["all"],
         },
       };
       pd.filters = {
@@ -465,8 +282,8 @@ var pd = {
           enabled: $("#pd__subreddits").is(":checked"),
           list: $(
             "#pd__sub-list input" +
-              ($("#pd__subreddits").is(":checked") ? ":checked" : "")
-          ).map(function () {
+            ($("#pd__subreddits").is(":checked") ? ":checked" : "")
+          ).map(function() {
             return $(this).attr("data-sub");
           }),
         },
@@ -478,8 +295,7 @@ var pd = {
         date: {
           enabled: $("#pd__date").is(":checked"),
           gt: $("#pd__date-dirtoggle").is(":checked"),
-          num:
-            Math.floor(new Date().getTime() / 1000) -
+          num: Math.floor(new Date().getTime() / 1000) -
             parseFloat($("#pd__date-num").val()) * 60,
         },
         gilded: $("#pd__gilded").is(":checked"),
@@ -487,21 +303,16 @@ var pd = {
         mod: $("#pd__mod").is(":checked"),
       };
     },
-    resetSorts: function () {
-      pd.task.paths.sorts = ["new", "hot", "top", "controversial"];
+    resetSorts: function() {
+      // pd.task.paths.sorts = ["new", "hot", "top", "controversial"];
+      pd.task.paths.sorts = ["new"];
     },
-    resetTimes: function () {
-      pd.task.paths.timeframes = [
-        "all",
-        "hour",
-        "day",
-        "week",
-        "month",
-        "year",
-      ];
+    resetTimes: function() {
+      // pd.task.paths.timeframes = ["all", "hour", "day", "week", "month", "year", ];
+      pd.task.paths.timeframes = ["all", ];
     },
-    bindUI: function () {
-      $("#pd__form").submit(function (e) {
+    bindUI: function() {
+      $("#pd__form").submit(function(e) {
         e.preventDefault();
         pd.setup.createProcessStream();
         var validation = pd.helpers.validate();
@@ -514,54 +325,55 @@ var pd = {
           alert(validation.reason);
         }
       });
-      $(".pd__q").click(function (e) {
+      $(".pd__q").click(function(e) {
         e.preventDefault();
         alert($(this).closest("[data-help]").attr("data-help"));
       });
-      $("#pd__form input").change(function () {
+      $("#pd__form input").change(function() {
         pd.helpers.saveSettings();
       });
-      $(".mass_sel").click(function () {
+      $(".mass_sel").click(function() {
         $(this)
           .closest(".xtr-section")
           .find("input")
           .prop("checked", $(this).hasClass("sel_all"));
         pd.helpers.saveSettings();
       });
-      $(".gt-toggle").change(function () {
+      $(".gt-toggle").change(function() {
         var greaterThan = $(this).hasClass("greater");
         $(this).attr(
           "class",
           "gt-toggle hidden " + (greaterThan ? "less" : "greater")
         );
       });
-      $(".num-only").blur(function () {
+      $(".num-only").blur(function() {
         $(this).val(
           $(this)
-            .val()
-            .replace(/[^\d-]/g, "")
+          .val()
+          .replace(/[^\d-]/g, "")
         );
         $(this).change();
       });
-      $(".pd__insert").click(function () {
+      $(".pd__insert").click(function() {
         $($(this).attr("data-target")).val($(this).attr("data-value")).change();
       });
     },
   },
   helpers: {
-    validate: function () {
+    validate: function() {
       if (pd.task.config.isEditing && pd.task.config.editText === "") {
         var confirmEmptyEdit = window.confirm(
           "You have not entered any text to edit your posts to; junk text will be used instead."
         );
         return {
           valid: !!confirmEmptyEdit,
-          reason:
-            confirmEmptyEdit ? "valid" :
-            "Please enter something to edit your comments / self posts to.",
+          reason: confirmEmptyEdit ? "valid" : "Please enter something to edit your comments / self posts to.",
         };
       } else if (pd.filters.score && $("#pd_score-num").val() === "") {
-        return { valid: false, reason: "Please enter a score to filter with." };
+        return {
+          valid: false,
+          reason: "Please enter a score to filter with."
+        };
       } else if (
         !(
           pd.task.config.isRemovingPosts ||
@@ -572,13 +384,15 @@ var pd = {
       ) {
         return {
           valid: false,
-          reason:
-            "There are no actions chosen, so we've got nothing to do. Please select an action.",
+          reason: "There are no actions chosen, so we've got nothing to do. Please select an action.",
         };
       }
-      return { valid: true, reason: "valid" };
+      return {
+        valid: true,
+        reason: "valid"
+      };
     },
-    shouldBeActedOn: function (item) {
+    shouldBeActedOn: function(item) {
       var check = {
         subs:
           !pd.filters.subs.enabled ||
@@ -591,14 +405,14 @@ var pd = {
           !pd.filters.score.enabled ||
           (pd.filters.score.enabled &&
             ((pd.filters.score.gt === true &&
-              parseFloat(item.data.score) > pd.filters.score.num) ||
+                parseFloat(item.data.score) > pd.filters.score.num) ||
               (pd.filters.score.gt === false &&
                 parseFloat(item.data.score) < pd.filters.score.num))),
         date:
           !pd.filters.date.enabled ||
           (pd.filters.date.enabled &&
             ((pd.filters.date.gt === true &&
-              parseFloat(item.data.created_utc) > pd.filters.date.num) ||
+                parseFloat(item.data.created_utc) > pd.filters.date.num) ||
               (pd.filters.date.gt === false &&
                 parseFloat(item.data.created_utc) < pd.filters.date.num))),
       };
@@ -617,18 +431,34 @@ var pd = {
         check.date
       );
     },
-    csvEscape: function (str) {
+    csvEscape: function(str) {
       return str.replace(/#/g, "%23").replace(/'/g, "`").replace(/"/g, '""');
     },
-    csvCell: function (str) {
+    csvCell: function(str) {
       return '"' + str + '",';
     },
-    getSettings: function () {
-      return localStorage.getItem("pd_storage")
-        ? JSON.parse(localStorage.getItem("pd_storage"))
-        : false;
+
+    // Read headers 
+    getRateLimitTimeout: function(xhr) {
+      const rateLimitRemaining = parseInt(xhr.getResponseHeader('x-ratelimit-remaining'), 10);
+      const rateLimitReset = parseInt(xhr.getResponseHeader('x-ratelimit-reset'), 10);
+      // Determine timeout
+      let timeout;
+      if (rateLimitRemaining <= 2) {
+        timeout = (rateLimitReset + 1) * 1000;
+      } else {
+        // Randomize timeout between 1.5 to 3 seconds 
+        timeout = Math.floor(Math.random() * 1500) + 1500; 
+      }
+      return timeout;
     },
-    restoreSettings: function () {
+
+    getSettings: function() {
+      return localStorage.getItem("pd_storage") ?
+        JSON.parse(localStorage.getItem("pd_storage")) :
+        false;
+    },
+    restoreSettings: function() {
       var settings = pd.helpers.getSettings(),
         rememberSettings = $("#pd__remember").is(":checked");
       if (settings !== false && rememberSettings) {
@@ -645,7 +475,7 @@ var pd = {
         $(".gt-toggle").not(":checked").change();
       }
     },
-    saveSettings: function () {
+    saveSettings: function() {
       if ($("#pd__remember").is(":checked")) {
         if (!$("#pd__subreddits").is(":checked")) {
           $("#pd__sub-list input").prop("checked", false);
@@ -661,7 +491,7 @@ var pd = {
   },
   actions: {
     page: {
-      next: function () {
+      next: function() {
         if (pd.debugging && pd.task.info.donePages % 5 == 3) {
           pd.actions.page.shift();
         }
@@ -672,7 +502,7 @@ var pd = {
           pd.ui.done();
         }
       },
-      shift: function () {
+      shift: function() {
         if (
           pd.task.paths.sorts[0] === "top" ||
           pd.task.paths.sorts[0] === "controversial"
@@ -696,26 +526,24 @@ var pd = {
         }
         return true;
       },
-      handle: function () {
+      handle: function() {
         pd.task.pageCalls++;
         $.ajax({
           url: pd.endpoints[pd.task.paths.sections[0]],
           data: {
-            q:
-              pd.task.paths.sections[0] == "search"
-                ? "author:" +
-                  pd.config.user +
-                  (!pd.task.config.isRemovingPosts &&
-                  !pd.task.config.isExporting
-                    ? " self:1"
-                    : "")
-                : null,
+            q: pd.task.paths.sections[0] == "search" ?
+              "author:" +
+              pd.config.user +
+              (!pd.task.config.isRemovingPosts &&
+                !pd.task.config.isExporting ?
+                " self:1" :
+                "") : null,
             after: pd.task.after,
             sort: pd.task.paths.sorts[0],
             t: pd.task.paths.timeframes[0],
           },
         }).then(
-          function (resp) {
+          function(resp) {
             if (resp.data) {
               var children = resp.data.children;
               pd.task.info.donePages++;
@@ -743,26 +571,38 @@ var pd = {
               }
             }
           },
-          function () {
-            pd.task.info.errors++;
-            if (
-              confirm(
-                "Error getting " +
-                  pd.task.paths.sections[0] +
-                  " page. Would you like to retry?"
-              )
-            ) {
-              pd.actions.page.handle();
-            } else {
-              pd.actions.page.shift();
-              pd.actions.page.next();
-            }
-          }
-        );
-      },
+function(xhr) { 
+  pd.task.info.errors++;
+
+  // Get timeout using the helper function
+  const timeout = pd.helpers.getRateLimitTimeout(xhr);
+
+  // Set timeout for the error handling
+  setTimeout(() => {
+    // Commented out the user confirmation dialog
+    /*
+    if (
+      confirm(
+        "Error getting " +
+        pd.task.paths.sections[0] +
+        " page. Would you like to retry?"
+      )
+    ) {
+      pd.actions.page.handle();
+    } else {
+      pd.actions.page.shift();
+      pd.actions.page.next();
+    }
+    */
+    // Automatically retry the action without user confirmation
+    pd.actions.page.handle();
+  }, timeout); 
+}
+  );
+},
     },
     children: {
-      handleGroup: function () {
+      handleGroup: function() {
         pd.ui.updateDisplay();
         if (pd.task.items.length > 0) {
           pd.actions.children.handleSingle();
@@ -770,15 +610,15 @@ var pd = {
           pd.actions.page.next();
         }
       },
-      handleSingle: function () {
+      handleSingle: function() {
         pd.ui.updateDisplay();
         var item = pd.task.items[0],
           shouldBeActedOn = pd.helpers.shouldBeActedOn(item),
           earlyExitNewItems =
-            pd.task.paths.sorts[0] == "new" &&
-            pd.filters.date.gt === true &&
-            pd.task.items[0].pdIgnoreReasons &&
-            !pd.task.items[0].pdIgnoreReasons.date;
+          pd.task.paths.sorts[0] == "new" &&
+          pd.filters.date.gt === true &&
+          pd.task.items[0].pdIgnoreReasons &&
+          !pd.task.items[0].pdIgnoreReasons.date;
 
         if (earlyExitNewItems) {
           console.log("Skipping the rest of the things sorted by new");
@@ -809,10 +649,10 @@ var pd = {
           pd.actions.children.handleGroup();
         }
       },
-      finishItem: function () {
-        pd.task.after = pd.task.items[0].pdDeleted
-          ? pd.task.after
-          : pd.task.items[0].data.name;
+      finishItem: function() {
+        pd.task.after = pd.task.items[0].pdDeleted ?
+          pd.task.after :
+          pd.task.items[0].data.name;
         pd.task.info.doneItems++;
         pd.task.info.deleted += pd.task.items[0].pdDeleted ? 1 : 0;
         pd.task.info.edited += pd.task.items[0].pdEdited ? 1 : 0;
@@ -822,7 +662,7 @@ var pd = {
         }
         pd.task.items.splice(0, 1);
       },
-      exportItem: function (item) {
+      exportItem: function(item) {
         var str = "";
         if (pd.exportItems.length == 0) {
           str += pd.helpers.csvCell("Title");
@@ -841,29 +681,29 @@ var pd = {
           );
           str += pd.helpers.csvCell(
             pd.helpers.csvEscape(
-              item.data.body
-                ? item.data.body
-                : item.data.selftext
-                ? item.data.selftext
-                : ""
+              item.data.body ?
+              item.data.body :
+              item.data.selftext ?
+              item.data.selftext :
+              ""
             )
           );
           str += pd.helpers.csvCell(
-            item.data.permalink
-              ? "https://reddit.com" + item.data.permalink
-              : "https://reddit.com/r/" +
-                  item.data.subreddit +
-                  "/comments/" +
-                  item.data.link_id.replace(/^t\d_/, "") +
-                  "/x/" +
-                  item.data.id +
-                  "?context=3"
+            item.data.permalink ?
+            "https://reddit.com" + item.data.permalink :
+            "https://reddit.com/r/" +
+            item.data.subreddit +
+            "/comments/" +
+            item.data.link_id.replace(/^t\d_/, "") +
+            "/x/" +
+            item.data.id +
+            "?context=3"
           );
           str += pd.helpers.csvCell(item.data.score);
           str += pd.helpers.csvCell(item.data.created_utc);
           str += pd.helpers.csvCell(
             (item.pdEdited ? "edited " : "") +
-              (item.pdDeleted ? "deleted " : "")
+            (item.pdDeleted ? "deleted " : "")
           );
           pd.exportItems.push(str);
           pd.exportIds.push(item.data.id);
@@ -871,103 +711,106 @@ var pd = {
         }
       },
     },
-    delete: function (item) {
-      setTimeout(() => {
-        if (pd.performActions) {
-          $.ajax({
-            url: "/api/del",
-            method: "post",
-            data: {
-              id: item.data.name,
-              executed: "deleted",
-              uh: pd.config.uh,
-              renderstyle: "html",
-            },
-          }).then(
-            function () {
+
+    delete: function(item) {
+      if (pd.performActions) {
+        $.ajax({
+          url: "/api/del",
+          method: "post",
+          data: {
+            id: item.data.name,
+            executed: "deleted",
+            uh: pd.config.uh,
+            renderstyle: "html",
+          },
+          complete: function(xhr) {
+            // Get timeout 
+            const timeout = pd.helpers.getRateLimitTimeout(xhr);
+            // Set timeout
+            setTimeout(() => {
               pd.task.items[0].pdDeleted = true;
               pd.actions.children.handleSingle();
-            },
-            function () {
-              pd.task.info.errors++;
-              if (
-                confirm(
-                  "Error deleting " +
-                    (item.kind == "t3" ? "post" : "comment") +
-                    ", would you like to retry?"
-                )
-              ) {
-                pd.actions.children.handleSingle();
-              } else {
-                pd.actions.children.finishItem();
-                pd.actions.children.handleGroup();
-              }
-            }
-          );
-        } else {
-          pd.task.items[0].pdDeleted = true;
-          pd.task.after = pd.task.items[0].data.name;
-          pd.actions.children.handleSingle();
-        }
-      }, 5000);
+            }, timeout);
+          }
+        }).fail(function() {
+          pd.task.info.errors++;
+          if (
+            confirm(
+              "Error deleting " +
+              (item.kind == "t3" ? "post" : "comment") +
+              ", would you like to retry?"
+            )
+          ) {
+            pd.actions.children.handleSingle();
+          } else {
+            pd.actions.children.finishItem();
+            pd.actions.children.handleGroup();
+          }
+        });
+      } else {
+        pd.task.items[0].pdDeleted = true;
+        pd.task.after = pd.task.items[0].data.name;
+        pd.actions.children.handleSingle();
+      }
     },
-    edit: function (item) {
-      setTimeout(() => {
-        if (pd.performActions) {
-          var editString = pd.task.config.editText ||
-            pd.editStrings[Math.floor(Math.random() * pd.editStrings.length)];
-          $.ajax({
-            url: "/api/editusertext",
-            method: "post",
-            data: {
-              thing_id: item.data.name,
-              text: editString,
-              id: "#form-" + item.data.name,
-              r: item.data.subreddit,
-              uh: pd.config.uh,
-              renderstyle: "html",
-            },
-          }).then(
-            function () {
+
+    edit: function(item) {
+      if (pd.performActions) {
+        var editString = pd.task.config.editText || pd.generateRandomSentence();
+        $.ajax({
+          url: "/api/editusertext",
+          method: "post",
+          data: {
+            thing_id: item.data.name,
+            text: editString,
+            id: "#form-" + item.data.name,
+            r: item.data.subreddit,
+            uh: pd.config.uh,
+            renderstyle: "html",
+          },
+          complete: function(xhr) {
+            // Get timeout 
+            const timeout = pd.helpers.getRateLimitTimeout(xhr);
+            // Set timeout
+            setTimeout(() => {
               pd.task.items[0].pdEdited = true;
               pd.actions.children.handleSingle();
-            },
-            function () {
-              pd.task.info.errors++;
-              if (
-                !confirm(
-                  "Error editing " +
-                    (item.kind == "t3" ? "post" : "comment") +
-                    ", would you like to retry?"
-                )
-              ) {
-                item.pdEdited = true;
-              }
-              pd.actions.children.handleSingle();
-            }
-          );
-        } else {
-          pd.task.items[0].pdEdited = true;
+            }, timeout);
+          }
+        }).fail(function() {
+          pd.task.info.errors++;
+          if (
+            !confirm(
+              "Error editing " +
+              (item.kind == "t3" ? "post" : "comment") +
+              ", would you like to retry?"
+            )
+          ) {
+            item.pdEdited = true;
+          }
           pd.actions.children.handleSingle();
-        }
-      }, 5000);
+        });
+      } else {
+        pd.task.items[0].pdEdited = true;
+        pd.actions.children.handleSingle();
+      }
     },
   },
   ui: {
-    updateDisplay: function () {
+    updateDisplay: function() {
       $("#pd__central h2")
         .first()
         .html(
           "Power Delete Suite v" +
-            pd.version +
-            " <br/>" +
-            "<small>" +
-            pd.task.paths.sections[0] +
-            "/" +
-            pd.task.paths.sorts[0] +
-            "/" +
-            pd.task.paths.timeframes[0] +
-            "</small>"
+          pd.version +
+          " <br/>" +
+          "<small>" +
+          pd.task.paths.sections[0] +
+          "/" +
+          pd.task.paths.sorts[0] +
+          "/" +
+          pd.task.paths.timeframes[0] +
+          "</small>"
         );
       pd.task.info.numPages =
         pd.task.info.donePages +
@@ -976,8 +819,8 @@ var pd = {
       $("#progress_page .bar").css(
         "width",
         Math.round((1000 * pd.task.info.donePages) / pd.task.info.numPages) /
-          10 +
-          "%"
+        10 +
+        "%"
       );
       $("#progress_page .text")
         .attr("data-top", pd.task.info.donePages)
@@ -986,8 +829,8 @@ var pd = {
         $("#progress_item .bar").css(
           "width",
           Math.round((1000 * pd.task.info.doneItems) / pd.task.info.numItems) /
-            10 +
-            "%"
+          10 +
+          "%"
         );
         $("#progress_item .text")
           .attr("data-top", pd.task.info.doneItems)
@@ -1031,9 +874,9 @@ var pd = {
       $("#progress__item-output").attr(
         "class",
         pd.task.info.ignored > 0 &&
-          (pd.task.info.deleted > 0 || pd.task.info.edited > 0)
-          ? "twocol"
-          : "onecol"
+        (pd.task.info.deleted > 0 || pd.task.info.edited > 0) ?
+        "twocol" :
+        "onecol"
       );
 
       pd.task.info.ajaxCalls =
@@ -1043,7 +886,7 @@ var pd = {
         pd.task.info.donePages;
       document.title = pd.config.user + " | " + pd.task.info.ajaxCalls;
     },
-    done: function () {
+    done: function() {
       pd.ui.updateDisplay();
       window.pd_processing = false;
       document.title =
@@ -1059,17 +902,17 @@ var pd = {
       ) {
         $("#pd__central .complete .summary").html(
           "<p>Completed after making " +
-            pd.task.info.ajaxCalls +
-            ' calls to the reddit servers.</p> <p>If you need to re run the script, <a class="restart">click here to go back to the beginning!</a></p>'
+          pd.task.info.ajaxCalls +
+          ' calls to the reddit servers.</p> <p>If you need to re run the script, <a class="restart">click here to go back to the beginning!</a></p>'
         );
       } else {
         $("#pd__central .complete .summary").html(
           "<p>All Done! It seems like all " +
-            pd.task.info.ignored +
-            ' items we came across were ignored.</p> <p>If you need to re run the script, <a class="restart">click here to go back to the beginning!</a></p>'
+          pd.task.info.ignored +
+          ' items we came across were ignored.</p> <p>If you need to re run the script, <a class="restart">click here to go back to the beginning!</a></p>'
         );
       }
-      $("#pd__central .complete .summary .restart").click(function () {
+      $("#pd__central .complete .summary .restart").click(function() {
         pd.init();
       });
 
@@ -1082,19 +925,19 @@ var pd = {
 
       $("#pd__central .complete .goodbye").html(
         '<hr/><h3 class="submit-bug">' +
-          "<div>Having trouble?</div>" +
-          '<div><a href="https://www.reddit.com/message/compose?to=j0be&subject=PowerDeleteSuite%20Config&message=' +
-          encodeURIComponent(debugInfo) +
-          '" target="_blank">Send /u/j0be a message with your current settings.</a></div>' +
-          "<div><small>(for privacy, subreddit list is not included)</small></div>" +
-          "</h3>"
+        "<div>Having trouble?</div>" +
+        '<div><a href="https://www.reddit.com/message/compose?to=j0be&subject=PowerDeleteSuite%20Config&message=' +
+        encodeURIComponent(debugInfo) +
+        '" target="_blank">Send /u/j0be a message with your current settings.</a></div>' +
+        "<div><small>(for privacy, subreddit list is not included)</small></div>" +
+        "</h3>"
       );
 
       if (pd.task.config.isExporting && pd.exportItems.length > 0) {
         $("#pd__central .complete .goodbye").prepend(
           '<hr/><a class="export-button" href=\'data:text/csv;charset=utf-8,' +
-            pd.exportItems.join("%0A") +
-            '\' download="PowerDeleteSuiteExport.csv">Download Exported Items</a>'
+          pd.exportItems.join("%0A") +
+          '\' download="PowerDeleteSuiteExport.csv">Download Exported Items</a>'
         );
       }
 
@@ -1102,7 +945,7 @@ var pd = {
       $("#pd__central .complete").show();
     },
   },
-  error: function () {
+  error: function() {
     var reset = confirm(
       "We ran into an error. Why not tell /u/j0be what you were doing to break it?\r\n\r\nWould you like to restart the script?"
     );
