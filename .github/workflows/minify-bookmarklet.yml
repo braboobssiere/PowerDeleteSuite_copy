@@ -1,0 +1,33 @@
+name: Minify JavaScript with Terser
+
+on:
+  push:
+    paths:
+      - 'bookmarklet.js'
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Minify with Terser
+        run: |
+          npx terser bookmarklet.js \
+            --compress \
+            --mangle \
+            --mangle-props regex=/^_/ \
+            --output bookmarklet.min.js
+          
+      - name: Auto-commit minified file
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          file_pattern: 'bookmarklet.min.js'
+          commit_message: 'minify bookmarklet with Terser'
+          commit_user_name: 'GitHub Actions'
+          commit_user_email: 'actions@github.com'
