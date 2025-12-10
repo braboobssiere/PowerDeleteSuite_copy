@@ -1,6 +1,7 @@
 name: Minify JavaScript with Terser
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'bookmarklet.js'
