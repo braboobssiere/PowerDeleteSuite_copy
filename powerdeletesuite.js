@@ -224,26 +224,19 @@ var pd = {
         ).prepend("<b class='m'>[M]</b>");
       });
     },
-    // ---------- MODIFIED: injectEditControls now adds a separate posts edit section with its own textbox ----------
     injectEditControls: function() {
       var $commentsEdit = $("#pd__comments-edit");
       if ($commentsEdit.length === 0 || $("#pd__posts-edit").length > 0) {
         return;
       }
 
-      var $commentsDiv = $commentsEdit.closest("div");
-      // Build a new dedicated section for posts editing
-      var $postsDiv = $('<div class="pd-edit-section">' +
-        '<input type="checkbox" data-edit="posts" name="pd__posts-edit" id="pd__posts-edit" checked="checked"/>' +
-        '<label for="pd__posts-edit">Edit posts</label>' +
-        ' <input type="text" name="pd__posts-edit-text" id="pd__posts-edit-text" placeholder="Text to edit posts to (or leave empty for random)" style="width:200px;"/>' +
-        '</div>');
-      $commentsDiv.before($postsDiv);
-
-      // Optionally, remove the "ind" class from the comments checkbox for consistency
-      // $commentsEdit.removeClass("ind");
+      $commentsEdit.next("label").text("Edit comments");
+      $commentsEdit
+        .closest("div")
+        .before(
+          '<div><input class="ind" data-edit="posts" type="checkbox" name="pd__posts-edit" id="pd__posts-edit" checked="checked"/><label for="pd__posts-edit">Edit posts</label></div>'
+        );
     },
-    // -----------------------------------------------------------------------------------------------------------
     createProcessStream: function() {
       window.pd_processing = true;
       pd.exportItems = [];
@@ -282,10 +275,7 @@ var pd = {
           isRemovingComments: $("#pd__comments").is(":checked"),
           isEditingPosts: $("#pd__posts-edit").is(":checked"),
           isEditingComments: $("#pd__comments-edit").is(":checked"),
-          // ---------- MODIFIED: separate edit texts for posts and comments ----------
-          editTextPosts: $("#pd__posts-edit-text").val(),
-          editTextComments: $("#pd__comments-edit-text").val(),
-          // -------------------------------------------------------------------------
+          editText: $("#pd__comments-edit-text").val(),
         },
         paths: {
           sections:
@@ -296,7 +286,9 @@ var pd = {
               "submissions",
               "overview",
             ] /* Search is actually more efficient than submissions if we're not handling submissions (`self:1`) */ : ["comments", "submissions", "search", "overview"],
+          // sorts: ["new", "hot", "top", "controversial"],
           sorts: ["new"],
+          // timeframes: ["all", "hour", "day", "week", "month", "year"],
           timeframes: ["all"],
         },
       };
@@ -327,9 +319,11 @@ var pd = {
       };
     },
     resetSorts: function() {
+      // pd.task.paths.sorts = ["new", "hot", "top", "controversial"];
       pd.task.paths.sorts = ["new"];
     },
     resetTimes: function() {
+      // pd.task.paths.timeframes = ["all", "hour", "day", "week", "month", "year", ];
       pd.task.paths.timeframes = ["all", ];
     },
     bindUI: function() {
@@ -381,20 +375,14 @@ var pd = {
     },
   },
   helpers: {
-    // ---------- MODIFIED: validation now checks each edit text separately ----------
     validate: function() {
-      var emptyPostText = pd.task.config.isEditingPosts && pd.task.config.editTextPosts === "";
-      var emptyCommentText = pd.task.config.isEditingComments && pd.task.config.editTextComments === "";
-      if (emptyPostText || emptyCommentText) {
-        var msg = "You have not entered any text to edit ";
-        if (emptyPostText && emptyCommentText) msg += "posts or comments";
-        else if (emptyPostText) msg += "posts";
-        else msg += "comments";
-        msg += " to; junk text will be used instead. Continue?";
-        var confirmEmptyEdit = window.confirm(msg);
+      if ((pd.task.config.isEditingPosts || pd.task.config.isEditingComments) && pd.task.config.editText === "") {
+        var confirmEmptyEdit = window.confirm(
+          "You have not entered any text to edit to; junk text will be used instead."
+        );
         return {
           valid: !!confirmEmptyEdit,
-          reason: confirmEmptyEdit ? "valid" : "Please enter something to edit your posts/comments to."
+          reason: confirmEmptyEdit ? "valid" : "Please enter something to edit your comments / posts to.",
         };
       } else if (pd.filters.score && $("#pd_score-num").val() === "") {
         return {
@@ -404,8 +392,7 @@ var pd = {
       } else if (
         !(
           pd.task.config.isRemovingPosts ||
-          pd.task.config.isEditingPosts ||
-          pd.task.config.isEditingComments ||
+          pd.task.config.isEditing ||
           pd.task.config.isRemovingComments ||
           pd.task.config.isExporting
         )
@@ -420,7 +407,6 @@ var pd = {
         reason: "valid"
       };
     },
-    // ------------------------------------------------------------------------------
     shouldBeActedOn: function(item) {
       var check = {
         subs:
@@ -467,14 +453,17 @@ var pd = {
       return '"' + str + '",';
     },
 
+    // Read headers 
     getRateLimitTimeout: function(xhr) {
       const rateLimitRemaining = parseInt(xhr.getResponseHeader('x-ratelimit-remaining'), 10);
       const rateLimitReset = parseInt(xhr.getResponseHeader('x-ratelimit-reset'), 10);
+      // Determine timeout
       let timeout;
       if (rateLimitRemaining <= 2) {
         timeout = (rateLimitReset + 1) * 1000;
       } else {
-        timeout = Math.floor(Math.random() * 1500) + 1500;
+        // Randomize timeout between 1.5 to 3 seconds 
+        timeout = Math.floor(Math.random() * 1500) + 1500; 
       }
       return timeout;
     },
@@ -626,12 +615,32 @@ var pd = {
               }
             }
           },
-function(xhr) {
+function(xhr) { 
   pd.task.info.errors++;
+
+  // Get timeout using the helper function
   const timeout = pd.helpers.getRateLimitTimeout(xhr);
+
+  // Set timeout for the error handling
   setTimeout(() => {
+    // Commented out the user confirmation dialog
+    /*
+    if (
+      confirm(
+        "Error getting " +
+        pd.task.paths.sections[0] +
+        " page. Would you like to retry?"
+      )
+    ) {
+      pd.actions.page.handle();
+    } else {
+      pd.actions.page.shift();
+      pd.actions.page.next();
+    }
+    */
+    // Automatically retry the action without user confirmation
     pd.actions.page.handle();
-  }, timeout);
+  }, timeout); 
 }
   );
 },
@@ -760,7 +769,9 @@ function(xhr) {
             renderstyle: "html",
           },
           complete: function(xhr) {
+            // Get timeout 
             const timeout = pd.helpers.getRateLimitTimeout(xhr);
+            // Set timeout
             setTimeout(() => {
               pd.task.items[0].pdDeleted = true;
               pd.actions.children.handleSingle();
@@ -788,15 +799,9 @@ function(xhr) {
       }
     },
 
-    // ---------- MODIFIED: edit now uses separate edit text based on item type ----------
     edit: function(item) {
       if (pd.performActions) {
-        var editString;
-        if (item.kind === "t3") {
-          editString = pd.task.config.editTextPosts || pd.generateRandomSentence();
-        } else { // comment
-          editString = pd.task.config.editTextComments || pd.generateRandomSentence();
-        }
+        var editString = pd.task.config.editText || pd.generateRandomSentence();
         $.ajax({
           url: "/api/editusertext",
           method: "post",
@@ -809,7 +814,9 @@ function(xhr) {
             renderstyle: "html",
           },
           complete: function(xhr) {
+            // Get timeout 
             const timeout = pd.helpers.getRateLimitTimeout(xhr);
+            // Set timeout
             setTimeout(() => {
               pd.task.items[0].pdEdited = true;
               pd.actions.children.handleSingle();
@@ -833,7 +840,6 @@ function(xhr) {
         pd.actions.children.handleSingle();
       }
     },
-    // ---------------------------------------------------------------------------------
   },
   ui: {
     updateDisplay: function() {
