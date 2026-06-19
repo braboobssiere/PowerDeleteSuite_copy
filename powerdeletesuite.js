@@ -170,6 +170,7 @@ var pd = {
           if (pd.debugging) {
             $(this).find(".debugging").removeClass("debugging");
           }
+          pd.setup.injectEditControls();
           $(this)
             .find("h2")
             .first()
@@ -223,6 +224,19 @@ var pd = {
         ).prepend("<b class='m'>[M]</b>");
       });
     },
+    injectEditControls: function() {
+      var $commentsEdit = $("#pd__comments-edit");
+      if ($commentsEdit.length === 0 || $("#pd__posts-edit").length > 0) {
+        return;
+      }
+
+      $commentsEdit.next("label").text("Edit comments");
+      $commentsEdit
+        .closest("div")
+        .before(
+          '<div><input class="ind" data-edit="posts" type="checkbox" name="pd__posts-edit" id="pd__posts-edit" checked="checked"/><label for="pd__posts-edit">Edit posts</label></div>'
+        );
+    },
     createProcessStream: function() {
       window.pd_processing = true;
       pd.exportItems = [];
@@ -233,7 +247,7 @@ var pd = {
           numPages: Math.min(
             ($("#pd__submissions").is(":checked") ? 8 : 0) +
             ($("#pd__comments").is(":checked") ? 4 : 0) +
-            ($("#pd__comments-edit").is(":checked") ? 12 : 0),
+            (($("#pd__posts-edit").is(":checked") || $("#pd__comments-edit").is(":checked")) ? 12 : 0),
             12
           ),
           numItems: 0,
@@ -259,7 +273,8 @@ var pd = {
           isExporting: $("#pd__export").is(":checked"),
           isRemovingPosts: $("#pd__submissions").is(":checked"),
           isRemovingComments: $("#pd__comments").is(":checked"),
-          isEditing: $("#pd__comments-edit").is(":checked"),
+          isEditingPosts: $("#pd__posts-edit").is(":checked"),
+          isEditingComments: $("#pd__comments-edit").is(":checked"),
           editText: $("#pd__comments-edit-text").val(),
         },
         paths: {
@@ -361,13 +376,13 @@ var pd = {
   },
   helpers: {
     validate: function() {
-      if (pd.task.config.isEditing && pd.task.config.editText === "") {
+      if ((pd.task.config.isEditingPosts || pd.task.config.isEditingComments) && pd.task.config.editText === "") {
         var confirmEmptyEdit = window.confirm(
-          "You have not entered any text to edit your posts to; junk text will be used instead."
+          "You have not entered any text to edit to; junk text will be used instead."
         );
         return {
           valid: !!confirmEmptyEdit,
-          reason: confirmEmptyEdit ? "valid" : "Please enter something to edit your comments / self posts to.",
+          reason: confirmEmptyEdit ? "valid" : "Please enter something to edit your comments / posts to.",
         };
       } else if (pd.filters.score && $("#pd_score-num").val() === "") {
         return {
@@ -473,6 +488,35 @@ var pd = {
           }
         }
         $(".gt-toggle").not(":checked").change();
+      }
+      pd.helpers.migrateEditSettings(settings, rememberSettings);
+    },
+    migrateEditSettings: function(settings, rememberSettings) {
+      var $postsEdit = $("#pd__posts-edit"),
+        $commentsEdit = $("#pd__comments-edit");
+
+      if ($postsEdit.length === 0 || $commentsEdit.length === 0) {
+        return;
+      }
+
+      if (!rememberSettings || settings === false) {
+        $postsEdit.prop("checked", true);
+        $commentsEdit.prop("checked", true);
+        return;
+      }
+
+      var hasPosts = settings.some(function(setting) {
+        return setting.name === "pd__posts-edit";
+      });
+      var hasComments = settings.some(function(setting) {
+        return setting.name === "pd__comments-edit";
+      });
+
+      if (hasComments && !hasPosts) {
+        $postsEdit.prop("checked", $commentsEdit.is(":checked"));
+      } else if (!hasComments && !hasPosts) {
+        $postsEdit.prop("checked", true);
+        $commentsEdit.prop("checked", true);
       }
     },
     saveSettings: function() {
@@ -627,10 +671,11 @@ function(xhr) {
           pd.actions.page.shift();
           pd.actions.page.next();
         } else if (shouldBeActedOn) {
+          var canEditPost = item.kind == "t3" && item.data.is_self && pd.task.config.isEditingPosts;
+          var canEditComment = item.kind == "t1" && pd.task.config.isEditingComments;
           if (
             !item.pdEdited &&
-            (item.data.is_self || item.kind == "t1") &&
-            pd.task.config.isEditing
+            (canEditPost || canEditComment)
           ) {
             pd.actions.edit(item);
           } else if (
